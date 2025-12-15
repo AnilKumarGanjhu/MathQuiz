@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kids Math Game</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f7ff;
+    		overflow: hidden;
+        }
+
+        h1 {
+            color: #333;
+        }
+        
+        .bg-emoji {
+    			position: absolute;
+    			font-size: 40px;
+    			animation: float 6s infinite ease-in-out;
+    			opacity: 0.3;
+				}
+
+			@keyframes float {
+   				 0% { transform: translateY(0); }
+    				50% { transform: translateY(-30px); }
+    				100% { transform: translateY(0); }
+				}
+
+        .equation {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .equation input {
+            width: 80px;
+            font-size: 24px;
+            text-align: center;
+            border: 2px solid #4CAF50;
+            border-radius: 6px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 8px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #43a047;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Floating Emojis Background -->
+<div class="bg-emoji" style="top:15%; left:10%;">🎈</div>
+<div class="bg-emoji" style="top:40%; left:80%;">⭐</div>
+<div class="bg-emoji" style="top:65%; left:20%;">🎉</div>
+<div class="bg-emoji" style="top:25%; left:55%;">🧸</div>
+<div class="bg-emoji" style="top:75%; left:70%;">🌈</div>
+
+<h1>Guess the Answer 👶</h1>
+<form action="/check" method="post">
+    <div class="equation">
+        <span th:text="${num1}"></span>
+        <span th:text="${operator}"></span>
+        <span th:text="${num2}"></span>
+        =
+        <input type="number" name="answer" required />
+    </div>
+
+    <!-- hidden values -->
+    <input type="hidden" name="num1" th:value="${num1}" />
+    <input type="hidden" name="num2" th:value="${num2}" />
+    <input type="hidden" name="operator" th:value="${operator}" />
+
+    <button type="submit">Check</button>
+</form>
+</body>
+</html>
